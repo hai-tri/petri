@@ -192,6 +192,13 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# macOS
+.DS_Store
+
+# Scratch/output files
+*.csv
+*.txt
+
 output/
 outputs/
 output_*/

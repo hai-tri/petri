@@ -202,7 +202,8 @@ def auditor_agent(
             audit_store.combined.messages = [initial_user_message]
 
         # run the auditor's conversation
-        config = GenerateConfig(max_tool_output=max_tool_output)
+        # Llama 3.3 on vLLM rejects parallel tool calls; force single-call turns.
+        config = GenerateConfig(max_tool_output=max_tool_output, parallel_tool_calls=False)
         await audit_loop(auditor_model, instance=instance, max_turns=max_turns, config=config)
 
         # Set the state's messages to the target's conversation
